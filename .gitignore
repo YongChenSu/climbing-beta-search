@@ -1,0 +1,75 @@
+# Node.js
+node_modules/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+pnpm-debug.log*
+
+# Build output
+.next/
+out/
+dist/
+build/
+*.tsbuildinfo
+
+# Env config
+.env
+.env.*.local
+# Keep .env.example for reference
+!.env.example
+
+# Prisma
+prisma/dev.db
+prisma/dev.db-journal
+*.sqlite
+*.sqlite-journal
+
+# Vercel
+.vercel/
+
+# Tailwind
+.tailwind/
+
+# Coverage directory used by testing tools
+coverage/
+
+# Optional cache directories
+.cache/
+.npm/
+.pnpm/
+.yarn/
+
+# Linting
+.eslintcache
+
+# macOS
+.DS_Store
+
+# IDE/editor folders
+.vscode/
+.idea/
+
+# OS/Editor temp files
+*.swp
+*.swo
+*.bak
+*.tmp
+
+# Bun (if you ever use it)
+.bun/
+
+# Turbo (if you use Turborepo)
+turbo/
+
+# GitHub Codespaces
+*.code-workspace
+
+# Prisma migration folders (optional to ignore)
+prisma/migrations/
+
+# Ignore generated Prisma client (optional if you're generating it)
+# Uncomment if you generate client in custom path and want to ignore
+# prisma/generated/
