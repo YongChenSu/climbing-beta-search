@@ -1,0 +1,74 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Gym {
+  id        String   @id @default(cuid())
+  name      String
+  address   String?
+  city      String   @default("台北")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  sections  Section[]
+  
+  @@map("gyms")
+}
+
+model Section {
+  id          String   @id @default(cuid())
+  name        String   // A區, B區, C區
+  description String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  gym   Gym    @relation(fields: [gymId], references: [id], onDelete: Cascade)
+  gymId String
+  
+  routes Route[]
+  
+  @@map("sections")
+}
+
+model Route {
+  id         String   @id @default(cuid())
+  grade      String   // V4, 5.10a, etc.
+  color      String?  // route tape color
+  setterName String?
+  setDate    DateTime?
+  status     String   @default("active") // active, retired
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  
+  section   Section @relation(fields: [sectionId], references: [id], onDelete: Cascade)
+  sectionId String
+  
+  betaVideos BetaVideo[]
+  
+  @@map("routes")
+}
+
+model BetaVideo {
+  id           String   @id @default(cuid())
+  instagramUrl String
+  instagramUser String
+  videoUrl     String?
+  description  String?
+  postDate     DateTime?
+  verified     Boolean  @default(false)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  
+  route   Route  @relation(fields: [routeId], references: [id], onDelete: Cascade)
+  routeId String
+  
+  @@map("beta_videos")
+}
